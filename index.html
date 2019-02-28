@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+</head>
+<body>
+    <p>Nombre</p>
+    <input type="text" id="TxtNombre"  placeholder="Carlos,Johanna,Gina" />
+    <br>
+    <p>Telefono</p>
+    <input type="tel" id="TxtTelefono"  placeholder="0318641046" />
+    <br>
+    <p>Email</p>
+    <input type="email" id="TxtMail"  placeholder="johavargas@gmail.com" />
+    <br>
+    <p>Placa</p>
+    <input type="tel" id="matriculaLetras" maxlength="3" placeholder="abc"  /> - <input type="tel" id="matriculaNumeros" maxlength="3"placeholder="123"  />
+    <br>
+
+    <input type="button" class="button" id="0" value="Verificar" onclick=" main()">
+</body>
+</html>
+
+<style type="text/css">
+    input{
+        margin: 10px 5px;
+        padding: 10px;
+        border: dotted;
+    }
+    .button{
+        background-color: #008CBA;
+        color: white;
+    }
+</style>
+
+<script type="">
+    function main(){
+     var nombre= document.getElementById("TxtNombre").value;
+     var telefono= document.getElementById("TxtTelefono").value;
+     var correo= document.getElementById('TxtMail').value;
+     var mtr1= document.getElementById('matriculaLetras').value;
+     var mtr2= document.getElementById('matriculaNumeros').value;
+     if ( nombre.length&&telefono.length&&correo.length&&mtr1.length&&mtr2.length>0) { 
+        if ( letras(nombre ) ){
+        }else{  
+          alert("Por favor verifica el nombre, solo letras")
+      }
+      if(numeros(telefono)) { 
+      }else{  
+          alert("Por favor ingresa solo numeros en el Telefono")
+      }
+      if (  email(correo)  ) { 
+      }else{
+         alert("Correo no valido por favor verifica lo siguiente: \n 1. Que sea un correo valido\n 2. Que tenga texto antes y despues del simbolo arroba '@' \n 3. Que contenga una terminacion valida como .com .co .umb");  
+     }
+     if (  letras(mtr1)&&numeros(mtr2)) { 
+     }else{
+         alert ("Verifica la matricula:\n Primer campo para letras y segundo para numeros")
+     }
+ }
+ else {
+     alert ("Verifica todos los campos ya que hay uno vacio")
+ }
+}
+function letras(text){
+   var expr = /[0-9]/ ;
+   if(expr.exec(text)){
+       res=false;
+   }
+   else {
+       res=true;
+   }
+   return res;
+}
+function numeros(num){
+ var expr = /[a-z]/i ;
+ if(expr.exec(num)){
+   res=false;
+}
+else {
+   res=true;
+}
+return res;
+}
+function email(correo){
+    var expresion;
+    expresion= /\w+@\w+\.+[a-z]/;
+    if(!expresion.exec(correo)){
+       res=false;
+   }else {
+       res=true;
+   }
+   return res;
+}
+</script>
